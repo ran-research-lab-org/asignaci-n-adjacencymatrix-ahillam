@@ -65,31 +65,58 @@ public:
     // devuelve true si u es uno de ellos
     bool isInfluencer(int u) const  
     {
-        int maxInDegree = 0;
+        int maxInDegree = inDegree(u);
         int temp = 0;
-
-        for (int i = 0; i<numVertices; i++)
-        {
-            if (adjMatrix[i][u] == 1) maxInDegree+=1;
-        }
 
         for (int j = 0; j<numVertices; j++)
         {
             if (j==u) continue;
-            for (int i = 0; i<numVertices; i++)
-            {
-                if (adjMatrix[i][j] == 1)
-                {
-                    temp += 1;
-                }
-            }
-            if (maxInDegree < temp)
-            {
-                return false;
-            }
-            temp = 0;
+            temp = inDegree(j);
+            if (temp > maxInDegree) return false;
+
         }
         return true;
     }
+
 };
+
+
+
+
+
+
+
+  // Completa esta función
+    // Devuelve cierto si u es el nodo con mayor inDegree.
+    // En caso de que haya varios nodos que tengan el mayor inDegree,
+    // devuelve true si u es uno de ellos
+    // bool isInfluencer(int u) const  
+    // {
+    //     int maxInDegree = inDegree(u);
+    //     int temp = 0;
+
+
+    //     for (int i = 0; i<numVertices; i++)
+    //     {
+    //         if (adjMatrix[i][u] == 1) maxInDegree+=1;
+    //     }
+
+    //     for (int j = 0; j<numVertices; j++)
+    //     {
+    //         if (j==u) continue;
+    //         for (int i = 0; i<numVertices; i++)
+    //         {
+    //             if (adjMatrix[i][j] == 1)
+    //             {
+    //                 temp += 1;
+    //             }
+    //         }
+    //         if (maxInDegree < temp)
+    //         {
+    //             return false;
+    //         }
+    //         temp = 0;
+    //     }
+    //     return true;
+    // }
 

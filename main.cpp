@@ -24,10 +24,10 @@ int main() {
   cout << "Input vertex to check: ";
   cin >> influencer;
 
-  cout << G.inDegree(influencer) << endl;
+  cout << "Number of edges: " << G.inDegree(influencer) << endl;
 
-  if (G.isInfluencer(influencer)==1) {cout << "true" << endl;}
-  else {cout << "false" << endl;}
+  if (G.isInfluencer(influencer)==true) {cout << "Vertex " << influencer << " has the highest inDegree." << endl;}
+  else {cout << "Vertex " << influencer << " does not have the highest inDegree." << endl;}
 
 
 
