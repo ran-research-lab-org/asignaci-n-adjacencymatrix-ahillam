@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
+using namespace std;
+
 
 class Graph {
 private:
@@ -33,23 +35,61 @@ public:
     // Implementar!! 
     // Devuelve la cantidad de aristas
     int numEdges() const {
-        return 0;
+        int count = 0;
+        for (int i = 0; i < numVertices; ++i) {
+            for (int j = 0; j < numVertices; ++j) {
+                if (adjMatrix[i][j]==1) count += 1;
+            }
+        }
+        return count;
     }
 
     // Completa esta función
     // Devuelve el in-degree de un vertice
     int inDegree(int u) const {
+        int inDegree = 0;
         if (u < 0 || u >= numVertices)
             throw std::out_of_range("Vertice fuera de rango");
         else {
+            for (int i = 0; i<numVertices; i++)
+            {
+                if (adjMatrix[i][u] == 1) inDegree+=1;
+            }
         }
+        return inDegree;
     }
 
     // Completa esta función
     // Devuelve cierto si u es el nodo con mayor inDegree.
     // En caso de que haya varios nodos que tengan el mayor inDegree,
     // devuelve true si u es uno de ellos
-    bool isInfluencer(int u) const  {
+    bool isInfluencer(int u) const  
+    {
+        int maxInDegree = 0;
+        int temp = 0;
+
+        for (int i = 0; i<numVertices; i++)
+        {
+            if (adjMatrix[i][u] == 1) maxInDegree+=1;
+        }
+
+        for (int j = 0; j<numVertices; j++)
+        {
+            if (j==u) continue;
+            for (int i = 0; i<numVertices; i++)
+            {
+                if (adjMatrix[i][j] == 1)
+                {
+                    temp += 1;
+                }
+            }
+            if (maxInDegree < temp)
+            {
+                return false;
+            }
+            temp = 0;
+        }
+        return true;
     }
 };
 
